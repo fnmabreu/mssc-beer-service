@@ -1,5 +1,6 @@
 package guru.sfg.beer.service.services.inventory;
 
+import guru.sfg.beer.service.config.FeignClientConfig;
 import guru.sfg.beer.service.services.inventory.model.BeerInventoryDto;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +14,7 @@ import java.util.UUID;
 /**
  * Created by fabreu on 02/12/2021
  */
-@FeignClient(name = "inventory-service", fallback = InventoryServiceFeignClientFailover.class)
+@FeignClient(name = "inventory-service", fallback = InventoryServiceFeignClientFailover.class, configuration = FeignClientConfig.class)
 public interface InventoryServiceFeignClient {
 
     @RequestMapping(method = RequestMethod.GET, value = BeerInventoryServiceRestTemplateImpl.INVENTORY_PATH)
